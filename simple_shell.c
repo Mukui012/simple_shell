@@ -10,8 +10,8 @@
  */
 vars_t *vars_tInit(vars_t *build)
 {
-	build->enviroment = generateLinkedList(environ);
-	build->enviromentList = NULL;
+	build->environment = generateLinkedList(environ);
+	build->environmentList = NULL;
 	build->args = NULL;
 	build->buffer = NULL;
 	build->path = _getenv("PATH", environ);
