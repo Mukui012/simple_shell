@@ -36,8 +36,8 @@ typedef struct linlist
 
 /**
  * struct variables - contains values for structure
- * @enviroment: local enviroment variables in linked list
- * @enviromentList: array of enviroment variables strings
+ * @environment: local environment variables in linked list
+ * @environmentList: array of environment variables strings
  * @args: arguments strings
  * @buffer: temporary buffer for user input
  * @path: path variable
@@ -48,8 +48,8 @@ typedef struct linlist
  */
 typedef struct variables
 {
-	lin_t *enviroment;
-	char **enviromentList;
+	lin_t *environment;
+	char **environmentList;
 	char **args;
 	char *buffer;
 	char *path;
