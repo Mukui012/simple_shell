@@ -6,8 +6,8 @@
  */
 void freeMembers(vars_t *build)
 {
-	if (build->enviroment)
-		freeList(build->enviroment);
+	if (build->environment)
+		freeList(build->environment);
 	if (build->args)
 		freeArgs(build->args);
 	if (build->buffer)

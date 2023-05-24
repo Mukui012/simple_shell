@@ -28,7 +28,7 @@ void errorHandler(vars_t *build)
 	len = ptr - error;
 	write(STDERR_FILENO, error, len + 1);
 	free(alp);
-	insertNullByte(error, 0);
+	insert_null_byte(error, 0);
 }
 
 /**
@@ -102,7 +102,7 @@ char *itoa(unsigned int num)
 		perror("Malloc: failed\n");
 		exit(errno);
 	}
-	insertNullByte(str, numerals);
+	insert_null_byte(str, numerals);
 	while (num > 0)
 	{
 		str[numerals - 1] = num % 10 + '0';

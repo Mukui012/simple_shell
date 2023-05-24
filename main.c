@@ -31,7 +31,7 @@ void get_line(vars_t *build)
 	char *ptr, *temp;
 
 	build->args = NULL;
-	build->enviromentList = NULL;
+	build->environmentList = NULL;
 	build->count++;
 	if (isatty(STDIN_FILENO))
 		displayPrompt();
@@ -49,7 +49,7 @@ void get_line(vars_t *build)
 	ptr = _strchr(build->buffer, '\n');
 	temp = _strchr(build->buffer, '\t');
 	if (ptr || temp)
-		insertNullByte(build->buffer, len - 1);
+		insert_null_byte(build->buffer, len - 1);
 	stripComments(build->buffer);
 }
 
@@ -67,14 +67,14 @@ void stripComments(char *str)
 	{
 		if (i == 0 && str[i] == '#')
 		{
-			insertNullByte(str, i);
+			insert_null_byte(str, i);
 			return;
 		}
 		if (not_first)
 		{
 			if (str[i] == '#' && str[i - 1] == ' ')
 			{
-				insertNullByte(str, i);
+				insert_null_byte(str, i);
 				return;
 			}
 		}
@@ -98,16 +98,16 @@ void forkAndExecute(vars_t *build)
 	{
 		perror("error\n");
 		freeMembers(build);
-		freeArgs(build->enviromentList);
+		freeArgs(build->environmentList);
 		exit(1);
 	}
 	if (my_pid == 0)
 	{
-		if (execve(build->fpath, build->args, build->enviromentList) == -1)
+		if (execve(build->fpath, build->args, build->environmentList) == -1)
 		{
 			errorHandler(build);
 			freeMembers(build);
-			freeArgs(build->enviromentList);
+			freeArgs(build->environmentList);
 			if (errno == ENOENT)
 				exit(127);
 			if (errno == EACCES)
@@ -120,7 +120,7 @@ void forkAndExecute(vars_t *build)
 		if (WIFEXITED(status))
 			build->error = WEXITSTATUS(status);
 		freeArgsAndBuffer(build);
-		freeArgs(build->enviromentList);
+		freeArgs(build->environmentList);
 	}
 }
 
@@ -133,22 +133,22 @@ void convertLLtoArr(vars_t *build)
 {
 	register int i = 0;
 	size_t item_count = 0;
-	char **env_list = NULL;
-	lin_t *temp = build->enviroment;
+	char **environmentList = NULL;
+	lin_t *temp = build->environment;
 
-	item_count = list_len(build->enviroment);
-	env_list = malloc(sizeof(char *) * (item_count + 1));
-	if (!env_list)
+	item_count = list_len(build->environment);
+	environmentList = malloc(sizeof(char *) * (item_count + 1));
+	if (!environmentList)
 	{
 		perror("Malloc failed\n");
 		exit(1);
 	}
 	while (temp)
 	{
-		env_list[i] = _strdup(temp->str);
+		environmentList[i] = _strdup(temp->str);
 		temp = temp->nxt;
 		i++;
 	}
-	env_list[i] = NULL;
-	build->env_list = env_list;
+	environmentList[i] = NULL;
+	build->environmentList = environmentList;
 }

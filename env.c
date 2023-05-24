@@ -7,7 +7,7 @@
  */
 int envFunc(vars_t *build)
 {
-		printList(build->enviroment);
+		printList(build->environment);
 		return (1);
 }
 
@@ -32,17 +32,17 @@ int setenvFunc(vars_t *build)
 	_strcat(buffer, build->args[1]);
 	_strcat(buffer, "=");
 	_strcat(buffer, build->args[2]);
-	insertNullByte(buffer, len - 1);
-	index = searchNode(build->enviroment, build->args[1]);
+	insert_null_byte(buffer, len - 1);
+	index = searchNode(build->environment, build->args[1]);
 	if (index == -1)
 	{
-		addNodeEnd(&build->enviroment, buffer);
-		insertNullByte(buffer, 0);
+		addNodeEnd(&build->environment, buffer);
+		insert_null_byte(buffer, 0);
 		return (1);
 	}
-	deleteNodeAtIndex(&build->enviroment, index);
-	addNodeAtIndex(&build->enviroment, index, buffer);
-	insertNullByte(buffer, 0);
+	deleteNodeAtIndex(&build->environment, index);
+	addNodeAtIndex(&build->environment, index, buffer);
+	insert_null_byte(buffer, 0);
 	return (1);
 }
 
@@ -61,10 +61,10 @@ int unsetenvFunc(vars_t *build)
 	{
 		if (_isalpha(build->args[i][0]) || build->args[i][0] == '_')
 		{
-			var = searchNode(build->enviroment, build->args[i]);
+			var = searchNode(build->environment, build->args[i]);
 			if (var > -1)
 			{
-				deleteNodeAtIndex(&build->enviroment, var);
+				deleteNodeAtIndex(&build->environment, var);
 				match = true;
 			}
 		}

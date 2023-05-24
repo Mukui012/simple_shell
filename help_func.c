@@ -12,7 +12,7 @@ int helpFunc(vars_t *build)
 	inborns_t help_arr[] = {
 		{"exit", helpExit},
 		{"env", helpEnv},
-		{"cd", helpCd},
+		{"cd", cd_help},
 		{"setenv", helpSetenv},
 		{"unsetenv", helpUnsetenv},
 		{"help", helpHelp},
