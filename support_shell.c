@@ -7,19 +7,19 @@
  */
 int cd_help(vars_t *build)
 {
-        char buf[194] = "cd: cd [destination]\n\t";
-        char *str0 = "Change directory to target destination.\n\t";        
-        char *str1 = "If [destination] is ommitted, user will be taken to home.\n\t";
-        char *str2 = "If \"-\" is used as second argument, user will be taken to ";
-        char *str3 = "last directory.\n";
+	char buf[194] = "cd: cd [destination]\n\t";
+	char *str0 = "Change directory to target destination.\n\t";
+	char *str1 = "If [destination] is ommitted, user will be taken to home.\n\t";
+	char *str2 = "If \"-\" is used as second argument, user will be taken to ";
+	char *str3 = "last directory.\n";
 
-        (void)build;
-        _strcat(buf, str0);
-        _strcat(buf, str1);
-        _strcat(buf, str2);
-        _strcat(buf, str3);
-        write(STDOUT_FILENO, buf, _strlen(buf));
-        return (1);
+	(void)build;
+	_strcat(buf, str0);
+	_strcat(buf, str1);
+	_strcat(buf, str2);
+	_strcat(buf, str3);
+	write(STDOUT_FILENO, buf, _strlen(buf));
+	return (1);
 }
 
 /**
@@ -29,19 +29,19 @@ int cd_help(vars_t *build)
  */
 int helpSetenv(vars_t *build)
 {
-        char str[186] = "setenv: setenv [var] [value]\n\t";
-        char *str2 = "Set or update a variable in the environment.\n\n\t";
-        char *str3 = "Creates a variable [var] with [value]. ";
-        char *str4 = "If the [var] already exists in the environment, ";
-        char *str5 = "the value is updated.\n";
+	char str[186] = "setenv: setenv [var] [value]\n\t";
+	char *str2 = "Set or update a variable in the environment.\n\n\t";
+	char *str3 = "Creates a variable [var] with [value]. ";
+	char *str4 = "If the [var] already exists in the environment, ";
+	char *str5 = "the value is updated.\n";
 
-        (void)build;
-        _strcat(str, str2);
-        _strcat(str, str3);
-        _strcat(str, str4);
-        _strcat(str, str5);
-        write(STDOUT_FILENO, str, _strlen(str));
-        return (1);
+	(void)build;
+	_strcat(str, str2);
+	_strcat(str, str3);
+	_strcat(str, str4);
+	_strcat(str, str5);
+	write(STDOUT_FILENO, str, _strlen(str));
+	return (1);
 }
 
 /**
@@ -51,15 +51,15 @@ int helpSetenv(vars_t *build)
  */
 int helpUnsetenv(vars_t *build)
 {
-        char buf[116] = "unsetenv: unsetenv [var]\n\t";
-        char *str2 = "Unset a variable in the environment.\n\n\t";
-        char *str3 = "[var] is an existing variable in the environment.\n";
+	char buf[116] = "unsetenv: unsetenv [var]\n\t";
+	char *str2 = "Unset a variable in the environment.\n\n\t";
+	char *str3 = "[var] is an existing variable in the environment.\n";
 
-        (void)build;
-        _strcat(buf, str2);
-        _strcat(buf, str3);
-        write(STDOUT_FILENO, buf, _strlen(buf));
-        return (1);
+	(void)build;
+	_strcat(buf, str2);
+	_strcat(buf, str3);
+	write(STDOUT_FILENO, buf, _strlen(buf));
+	return (1);
 }
 
 /**
@@ -69,13 +69,13 @@ int helpUnsetenv(vars_t *build)
  */
 int helpHelp(vars_t *build)
 {
-        char buf[129] = "help: help [built-in]\n\t";
-        char *str2 = "Display information about built-in commands.\n\n\t";
-        char *str3 = "If [built-in] is not specified, print a list of built-ins.\n";
+	char buf[129] = "help: help [built-in]\n\t";
+	char *str2 = "Display information about built-in commands.\n\n\t";
+	char *str3 = "If [built-in] is not specified, print a list of built-ins.\n";
 
-        (void)build;
-        _strcat(buf, str2);
-        _strcat(buf, str3);
-        write(STDOUT_FILENO, buf, _strlen(buf));
-        return (1);
+	(void)build;
+	_strcat(buf, str2);
+	_strcat(buf, str3);
+	write(STDOUT_FILENO, buf, _strlen(buf));
+	return (1);
 }
