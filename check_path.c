@@ -30,14 +30,14 @@ bool checkPath(vars_t *build)
 		_strcat(buffer, tok);
 		_strcat(buffer, "/");
 		_strcat(buffer, build->args[0]);
-		insertNullByte(buffer, len - 1);
+		insert_null_byte(buffer, len - 1);
 		if (stat(buffer, &st) == 0)
 		{
 			free(copy);
 			build->fpath = buffer;
 			return (true);
 		}
-		insertNullByte(buffer, 0);
+		insert_null_byte(buffer, 0);
 		tok = _strtok(NULL, delim);
 		inLoop = true;
 	}

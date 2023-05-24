@@ -32,12 +32,12 @@ bool cdToHome(vars_t *build)
 	register int n;
 	char *str, *ptr;
 
-	n = searchNode(build->enviroment, "HOME");
+	n = searchNode(build->environment, "HOME");
 	if (n == -1)
 	{
 		return (true);
 	}
-	str = getNodeAtIndex(build->enviroment, n);
+	str = getNodeAtIndex(build->environment, n);
 	ptr = _strchr(str, '=');
 	ptr++;
 	chdir(ptr);
@@ -47,7 +47,7 @@ bool cdToHome(vars_t *build)
 
 /**
  * cdToPrevious - change directory to previous directory -
- * address is found in OLDPWD enviroment var
+ * address is found in OLDPWD environment var
  * @build: input build
  * Return: true on success, false on failure
  */
@@ -58,14 +58,14 @@ bool cdToPrevious(vars_t *build)
 	char *current = NULL;
 
 	current = getcwd(current, 0);
-	n = searchNode(build->enviroment, "OLDPWD");
+	n = searchNode(build->environment, "OLDPWD");
 	if (n == -1)
 	{
 		chdir(current);
 		write(STDOUT_FILENO, current, _strlen(current));
 		displayNewLine();
 		return (true);																}
-	str = getNodeAtIndex(build->enviroment, n);
+	str = getNodeAtIndex(build->environment, n);
 	ptr = _strchr(str, '=');
 	ptr++;
 	chdir(ptr);

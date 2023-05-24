@@ -27,23 +27,23 @@ int updold(vars_t *build)
 	char *current = NULL;
 
 	_strcat(old, "OLD");
-	pwdIndex = searchNode(build->enviroment, "PWD");
+	pwdIndex = searchNode(build->environment, "PWD");
 	if (pwdIndex == -1)
 	{
 		return (-1);
 	}
-	current = getNodeAtIndex(build->enviroment, pwdIndex);
+	current = getNodeAtIndex(build->environment, pwdIndex);
 	_strcat(old, current);
-	insertNullByte(old, _strlen(current) + 4);
+	insert_null_byte(old, _strlen(current) + 4);
 	free(current);
-	index = searchNode(build->enviroment, "OLDPWD");
+	index = searchNode(build->environment, "OLDPWD");
 	if (index == -1)
 	{
 		return (-1);
 	}
-	deleteNodeAtIndex(&build->enviroment, index);
-	addNodeAtIndex(&build->enviroment, index, old);
-	insertNullByte(old, 0);
+	deleteNodeAtIndex(&build->environment, index);
+	addNodeAtIndex(&build->environment, index, old);
+	insert_null_byte(old, 0);
 	return (pwdIndex);
 }
 
@@ -62,11 +62,11 @@ bool updcur(vars_t *build, int index)
 	_strcat(cwd, tmp);
 	if (index > -1)
 	{
-		deleteNodeAtIndex(&build->enviroment, index);
-		addNodeAtIndex(&build->enviroment, index, cwd);
+		deleteNodeAtIndex(&build->environment, index);
+		addNodeAtIndex(&build->environment, index, cwd);
 	} else
-		addNodeAtIndex(&build->enviroment, 0, cwd);
-	insertNullByte(tmp, 0);
-	insertNullByte(cwd, 0);
+		addNodeAtIndex(&build->environment, 0, cwd);
+	insert_null_byte(tmp, 0);
+	insert_null_byte(cwd, 0);
 	return (true);
 }
